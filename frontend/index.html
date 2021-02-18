@@ -11,7 +11,7 @@
 
     <body>
         <div class="container-fluid">
-            <form id="form-warga" method="POST">
+            <form id="form-warga" class="needs-validation" method="POST" novalidate>
                 <div class="card mt-4">
                     <div class="card-body">
                         <h6 class="card-title">Formulir Pendataan Warga RW 04, Kelurahan Nagri Kaler, Kab. Purwakarta</h6>
@@ -19,17 +19,23 @@
                         <div class="form-group">
                             <label for="no-kk">No KK</label>
                             <input type="text" class="form-control" id="no-kk" name="no-kk" required>
+                            <div class="invalid-feedback">
+                                No KK harus diisi
+                            </div>
                         </div>
                         <!-- NIK (no KTP) -->
                         <div class="form-group">
-                            <label for="nik">No NIK (KTP)</label>
+                            <label for="nik">NIK (No KTP)</label>
                             <input type="text" class="form-control" id="nik" name="nik" required>
+                            <div class="invalid-feedback">
+                                NIK (No KTP) harus diisi
+                            </div>
                         </div>
                         <!-- Wilayah RT -->
                         <div class="form-group">
                             <label for="rt">Wilayah RT</label>
                             <select class="form-control" id="rt" name="rt" name="rt" required>
-                            <option>Pilih...</option>
+                            <option selected disabled value="">Pilih...</option>
                             <option>RT 31</option>
                             <option>RT 32</option>
                             <option>RT 33</option>
@@ -41,21 +47,33 @@
                             <option>RT 39</option>
                             <option>RT 40</option>
                         </select>
+                            <div class="invalid-feedback">
+                                Pilih salah satu
+                            </div>
                         </div>
                         <!-- Nama Lengkap -->
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
                             <input type="text" class="form-control" id="nama" name="nama" required>
+                            <div class="invalid-feedback">
+                                Nama lengkap harus diisi
+                            </div>
                         </div>
-                        <!-- Nama Lengkap -->
+                        <!-- No Handphone -->
                         <div class="form-group">
-                            <label for="no-hp">Nomor Handphone</label>
+                            <label for="no-hp">Nomor HP</label>
                             <input type="text" class="form-control" id="no-hp" name="no-hp" required>
+                            <div class="invalid-feedback">
+                                No HP harus diisi
+                            </div>
                         </div>
                         <!-- Alamat Lengkap -->
                         <div class="form-group">
                             <label for="alamat">Alamat Lengkap</label>
-                            <textarea class="form-control" id="alamat" rows="3"></textarea>
+                            <textarea class="form-control" id="alamat" rows="3" required></textarea>
+                            <div class="invalid-feedback">
+                                Alamat lengkap harus diisi
+                            </div>
                         </div>
                         <!-- Jenis Kelamin -->
                         <fieldset class="form-group">
@@ -73,6 +91,9 @@
                                         <label class="form-check-label" for="jenis-kelamin2">
                                         Perempuan
                                     </label>
+                                        <div class="invalid-feedback">
+                                            Pilih salah satu
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -81,37 +102,49 @@
                         <div class="form-group">
                             <label for="alamat">Tanggal Lahir</label>
                             <input type="date" class="form-control" id="tanggal-lahir" name="tanggal-lahir" required>
+                            <div class="invalid-feedback">
+                                Tanggal lahir harus diisi
+                            </div>
                         </div>
                         <!-- Usia -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="alamat">Usia</label>
                             <input type="number" class="form-control" id="usia" name="usia" min="17" required>
-                        </div>
+                            <div class="invalid-feedback">
+                                Usia harus diisi dan minimal 17 tahun
+                            </div>
+                        </div> -->
                         <!-- Pekerjaan -->
                         <div class="form-group">
                             <label for="rt">Pekerjaan</label>
                             <select class="form-control" id="pekerjaan" name="pekerjaan" name="pekerjaan" required>
-                            <option>Pilih...</option>
+                            <option selected disabled value="">Pilih...</option>
                             <option>Pegawai Negeri</option>
                             <option>Karyawan Swasta</option>
                             <option>Wiraswasta</option>
                             <option>Pelajar/Mahasiswa</option>
                             <option>Lainnya...</option>
                         </select>
+                            <div class="invalid-feedback">
+                                Pilih salah satu
+                            </div>
                         </div>
                         <!-- Domisili -->
                         <div class="form-group">
                             <label for="rt">Domisili</label>
                             <select class="form-control" id="domisili" name="domisili" name="domisili" required>
-                            <option>Pilih...</option>
+                            <option selected disabled value="">Pilih...</option>
                             <option>Warga Setempat</option>
                             <option>Warga Pendatang</option>
                         </select>
+                            <div class="invalid-feedback">
+                                Pilih salah satu
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="my-3">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Kirim</button>
+                    <button type="submit" id="btn-submit" class="btn btn-primary btn-lg btn-block">Kirim</button>
                 </div>
             </form>
         </div>
