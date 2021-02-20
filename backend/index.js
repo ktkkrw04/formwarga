@@ -2,14 +2,14 @@ import express from "express";
 import bodyParser from "body-parser";
 import multer from "multer";
 import opencage from "opencage-api-client";
+import { Citizen } from "./modules/citizen/citizen.mjs";
 
 const port = process.env.PORT || 8080;
 const upload = multer();
 
 const app = express();
-app.use(bodyParser.json());
 app.use(upload.array());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/geocode", (req, res) => {
     opencage
@@ -40,9 +40,13 @@ app.get("/geocode", (req, res) => {
             console.log("error", error.message);
         });
 });
-app.post("/warga", (req, res) => {
-    console.log(req.body);
-    res.json(req.body);
+app.post("/verify", (req, res) => {
+    // console.log(req.body);
+    const citizen = new Citizen(req.body.tanggal_lahir);
+
+    res.render("verify.ejs", {
+        verify: citizen.verify(),
+    });
 });
 
 app.get("/", (req, res) => {

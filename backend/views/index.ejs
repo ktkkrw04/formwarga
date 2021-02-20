@@ -11,7 +11,7 @@
 
     <body>
         <div class="container-fluid">
-            <form id="form-warga" class="needs-validation" novalidate>
+            <form action="/verify" method="POST" enctype="multipart/form-data" id="form-warga" class="needs-validation" novalidate>
                 <div class="card mt-4">
                     <div class="card-body">
                         <h6 class="card-title">Formulir Pendataan Warga RW 04, Kelurahan Nagri Kaler, Kab. Purwakarta</h6>
@@ -144,7 +144,7 @@
                     </div>
                 </div>
                 <div class="my-3">
-                    <button type="button" id="btn-submit" class="btn btn-primary btn-lg btn-block">Kirim</button>
+                    <button type="submit" id="btn-submit" class="btn btn-primary btn-lg btn-block">Kirim</button>
                 </div>
             </form>
         </div>
@@ -167,9 +167,9 @@
 
                 // Loop over them and prevent submission
                 Array.prototype.slice.call(forms).forEach(function(form) {
-                    const btn = document.getElementById("btn-submit");
-                    btn.addEventListener(
-                        "click",
+                    // const btn = document.getElementById("btn-submit");
+                    form.addEventListener(
+                        "submit",
                         function(event) {
                             if (!form.checkValidity()) {
                                 event.preventDefault();
@@ -177,14 +177,6 @@
                             }
 
                             form.classList.add("was-validated");
-
-                            let data = new FormData(form);
-                            fetch("/warga", {
-                                    method: "post",
-                                    body: data
-                                })
-                                .then((response) => response.json())
-                                .then((res) => console.log(res));
                         },
                         false
                     );
