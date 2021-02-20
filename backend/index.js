@@ -9,8 +9,9 @@ const upload = multer();
 const app = express();
 app.use(bodyParser.json());
 app.use(upload.array());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/geocode", (req, res) => {
     opencage
         .geocode({
             q: "Kabupaten Purwakarta",
@@ -41,7 +42,11 @@ app.get("/", (req, res) => {
 });
 app.post("/warga", (req, res) => {
     console.log(req.body);
-    res.send(req.body);
+    res.json(req.body);
+});
+
+app.get("/", (req, res) => {
+    res.render("index.ejs");
 });
 
 app.listen(port, () => {
