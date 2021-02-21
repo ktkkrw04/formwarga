@@ -19,8 +19,21 @@ import Sequelize from "sequelize";
 //     },
 // };
 
+// const sequelize = new Sequelize(
+//     "postgres://ouoasqnkkmkbdu:06c6ebfde85cc6d16c32e871453a4929f14dc4ee57fcb3817591d4f940d06bdd@ec2-18-204-101-137.compute-1.amazonaws.com:5432/dam6k4babcb38b"
+// );
+
 const sequelize = new Sequelize(
-    "postgres://ouoasqnkkmkbdu:06c6ebfde85cc6d16c32e871453a4929f14dc4ee57fcb3817591d4f940d06bdd@ec2-18-204-101-137.compute-1.amazonaws.com:5432/dam6k4babcb38b"
+    "postgres://ouoasqnkkmkbdu:06c6ebfde85cc6d16c32e871453a4929f14dc4ee57fcb3817591d4f940d06bdd@ec2-18-204-101-137.compute-1.amazonaws.com:5432/dam6k4babcb38b", {
+        dialect: "postgres",
+        protocol: "postgres",
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false, // <<<<<<< YOU NEED THIS
+            },
+        },
+    }
 );
 
 const db = {};
@@ -77,9 +90,10 @@ const upload = multer();
 
 const app = express();
 
-db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//     console.log("Drop and re-sync db.");
+// });
+db.sequelize.sync();
 
 const CitizenModel = db.citizen;
 const Op = db.Sequelize.Op;
